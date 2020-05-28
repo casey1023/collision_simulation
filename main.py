@@ -1,6 +1,4 @@
 from vpython import *
-import time
-import numpy as np
 import math
 
 ##config
@@ -60,9 +58,6 @@ ball_recon = [sphere(pos=vec(ball[0].pos.x + size, 0.03, ball[0].pos.z),    radi
             sphere(pos=vec(ball[14].pos.x + size, 0.03, ball[14].pos.z),    radius=ball_recon_size, color=color.yellow),
             sphere(pos=vec(ball[15].pos.x + size, 0.03, ball[15].pos.z),    radius=ball_recon_size, color=color.yellow)]
 
-er = sphere(pos=vec(0,0,0),         radius=size, color=color.white,     v=vec(0, 0, 0),     a=vec(0, 0, 0), vv=0, w = vec(0, 0, 0))
-wer = sphere(pos=vec(1,0,0),         radius=size, color=color.white,     v=vec(0, 0, 0),     a=vec(0, 0, 0), vv=0, w = vec(0, 0, 0))
-ser = sphere(pos=vec(0,0,1),         radius=size, color=color.white,     v=vec(0, 0, 0),     a=vec(0, 0, 0), vv=0, w = vec(0, 0, 0))
 
 gd = graph(title="energy", width=800, height=450, x=0, y=600, xtitle="time(s)", ytitle="Q(J)")
 xt = gcurve(graph=gd, color=color.red)
@@ -135,8 +130,6 @@ class rotation:
             p = -1 * mass * vv.mag * (1 + e) * (vp + cross(r, ball[i].w)) / (vp + cross(r, ball[i].w)).mag
             w = ball[i].w + 5 * cross(r, p) * uk / (2 * mass * size * size)
             ball[i].w = w
-            print(p)
-            print(w)
 
         elif wall == 2:
             r = vec(0, 0, -1 * size)
@@ -144,9 +137,7 @@ class rotation:
             vp = vec(ball[i].v.x, 0, 0)
             p = -1 * mass * vv.mag * (1 + e) * (vp + cross(r, ball[i].w)) / (vp + cross(r, ball[i].w)).mag
             w = ball[i].w + 5 * cross(r, p) * uk / (2 * mass * size * size)
-            ball[i].w = w
-            print(p)
-            print(w)            
+            ball[i].w = w         
 
         elif wall == 3:
             r = vec(size, 0, 0)
@@ -155,8 +146,6 @@ class rotation:
             p = -1 * mass * vv.mag * (1 + e) * (vp + cross(r, ball[i].w)) / (vp + cross(r, ball[i].w)).mag
             w = ball[i].w + 5 * cross(r, p) * uk / (2 * mass * size * size)
             ball[i].w = w
-            print(p)
-            print(w) 
 
         elif wall == 4:
             r = vec(0, 0, size)
@@ -165,9 +154,6 @@ class rotation:
             p = -1 * mass * vv.mag * (1 + e) * (vp + cross(r, ball[i].w)) / (vp + cross(r, ball[i].w)).mag
             w = ball[i].w + 5 * cross(r, p) * uk / (2 * mass * size * size)
             ball[i].w = w
-            print(p)
-            print(w) 
-        print("dkjfo")
         return
 
 ro = rotation()
